@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)https://fathima.netlify.app/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./fathima_files/style.css">
+    <title>fathima</title>
+</head>
+<body align="center">
+    <h1 align="center" class="head">study material ds &amp; rdbms</h1>
+  <p>
+      </p><h3>
+
+          PROGRAMME 01
+          ------------
+        </h3>
+ <p>
+    CREATE TABLE  <b>
+
+        CUSTOMER
+    </b>
+        (
+    cust_no VARCHAR(5),
+    cust_name VARCHAR(15),
+    age INT,
+    cust_phone VARCHAR(10)
+    );
+ </p>   
+
+  <p>
+    A)
+    SELECT * FROM CUSTOMER;
+    INSERT INTO CUSTOMER VALUES
+    ('1','SANA' , 20 , '123456'),
+    ('2','HANA' , 22 , '123456'),
+    ('3','HENNA' , 19 , '123456'),
+    ('4','ANAS' , 18 , '123456'),
+    ('5','ANU' , 10 , '123456');
+  </p>  
+<p>
+
+    B)
+    ALTER TABLE CUSTOMER ADD COLUMN d_birth DATE;
+    
+</p>
+<p>
+
+    C)
+    CREATE TABLE CUST_PHONE AS SELECT cust_no,cust_phone FROM CUSTOMER;
+    SELECT * FROM CUST_PHONE;
+</p>
+ <p>
+
+     D)
+     ALTER TABLE CUSTOMER DROP COLUMN age;
+    </p>   
+    <p>
+
+        e)
+        ALTER TABLE CUSTOMER ALTER COLUMN cust_name TYPE VARCHAR(25);
+        ALTER TABLE CUSTOMER ALTER COLUMN cust_phone TYPE VARCHAR(25);
+    </p>
+    <p>
+
+        
+        f)
+        DELETE FROM CUSTOMER;
+    </p>
+    <p>
+
+        G)
+        ALTER TABLE CUSTOMER RENAME TO CUST;
+    </p>
+    <p>
+
+        F)
+        DROP TABLE CUST;
+    </p>
+   
+<p></p>
+<p>
+    
+    </p><h3>
+
+        PROGRAMME 2
+        ------------
+</h3>
+    <p>
+
+        CREATE TABLE 
+        <b>
+
+            SALES_MAN
+        </b>
+        (
+            SALESMAN_NO VARCHAR(10) PRIMARY KEY,
+            S_NAME VARCHAR(15) NOT NULL,
+            PLACE VARCHAR(15),
+            PHONE VARCHAR(15) UNIQUE
+            );
+        </p>
+        <p>
+
+            
+            SELECT * FROM SALES_MAN;
+            
+            CREATE TABLE SALES_ORDER(
+                ORDER_NO VARCHAR(10) PRIMARY KEY,
+                ORDER_DATE DATE NOT NULL,
+                SALESMAN_NO VARCHAR(15),
+                FOREIGN KEY (SALESMAN_NO) REFERENCES SALES_MAN(SALESMAN_NO),
+                DEL_TYPE VARCHAR(10) CHECK (DEL_TYPE IN ('P' ,'F')),
+                ORDER_STATUS VARCHAR(10) CHECK (ORDER_STATUS IN ('Inprocess','Fullfilled','Backorder', 'Cancelled'))
+                );
+            </p>
+            <p>
+
+                
+                A)
+                
+                INSERT INTO SALES_MAN VALUES
+                ('101','SANA' , 'MUKKOM' , '12356'),
+                ('201','HANA' , 'THIRUVAMBADY' , '12346'),
+                ('301','HENNA' , 'OMASSERY' , '12345'),
+                ('401','ANAS' , 'CALICUT' , '23456'),
+                ('501','ANU' , 'WAYAND' , '13456');
+                
+                
+                INSERT INTO SALES_ORDER VALUES
+                ('1001','01-08-2001' , '101' , 'F' ,'Inprocess'),
+                ('2001','02-01-2000' , '201' , 'P' ,'Fullfilled'),
+                ('3001','02-03-1999' , '301' , 'P','Cancelled'),
+                ('4001','04-06-2001' , '401' , 'P','Fullfilled'),
+                ('5001','04-08-2000' , '501' , 'F','Backorder');
+                
+            </p>
+            <p>
+
+                b)
+                
+                ALTER TABLE SALES_MAN DROP CONSTRAINT SALES_MAN_PKEY;
+                
+            </p>
+            <p>
+
+                C)
+                /d SALES_ORDER;
+                ALTER TABLE SALES_ORDER DROP CONSTRAINT SALES_ORDER_SALESMAN_NO_FKEY;
+                ALTER TABLE SALES_ORDER DROP CONSTRAINT SALES_ORDER_DEL_TYPE_CHECK ;
+                ALTER TABLE SALES_ORDER DROP CONSTRAINT SALES_ORDER_ORDER_STATUS_CHECK ;
+                
+            </p>
+            <p>
+                
+                D)
+                
+                ALTER TABLE SALES_MAN ADD PRIMARY KEY (SALESMAN_NO);
+                
+            </p>
+            <p>
+                
+                E)
+                
+                ALTER TABLE SALES_ORDER ADD CONSTRAINT S_NO FOREIGN KEY(SALESMAN_NO) REFERENCES SALES_MAN(SALESMAN_NO);
+                ALTER TABLE SALES_ORDER ADD CONSTRAINT CHECK_DEL CHECK (DEL_TYPE IN ('P' ,'F'));
+                ALTER TABLE SALES_ORDER ADD CONSTRAINT CHECK_ORDER CHECK (ORDER_STATUS IN ('Inprocess','Fullfilled','Backorder',
+                'Cancelled'));
+                
+            </p>
+                
+            <h3>
+
+                PROGRAMME 3
+                ------------
+                
+            </h3>
+            <p>
+
+                CREATE TABLE 
+                <b>
+
+                    HOSPITAL
+                </b>
+                (
+                    DOCTORID VARCHAR(10) PRIMARY KEY,
+                    DOCTORNAME VARCHAR (15),
+                    DEPARTMENT VARCHAR (15),
+                    QUALIFICATION VARCHAR (15),
+                    EXPERIENCE INT
+                    );
+                </p>    
+                <p>
+
+                    A)
+                    
+                    INSERT INTO HOSPITAL VALUES
+                    ('D001' , 'SANA' , 'SKIN' , 'MBBS' ,'12'),
+                    ('D002' , 'HANA' , 'SKIN' , 'MD', '12'),
+                    ('D003' , 'HENNA' , 'CARDIAC' , 'MBBS', '10'),
+                    ('D004' , 'ANAS' , 'SKIN' , 'MD' ,'12'),
+                    ('D005' , 'ANU' , 'DENTAL' , 'MBBS' ,'5');
+                </p>
+                <p>
+
+                    
+                    B)
+                    SELECT * FROM HOSPITAL;
+                </p>
+                <p>
+
+                    
+                    C)
+                    
+                    SELECT * FROM HOSPITAL WHERE QUALIFICATION='MD';
+                </p>
+                <p>
+
+                    
+                    D)
+                    SELECT DOCTORNAME FROM HOSPITAL WHERE EXPERIENCE &gt; 5 AND QUALIFICATION &lt;&gt; 'MD';
+                    
+                    
+                </p>
+                <p>
+
+                    E)
+                    SELECT DOCTORNAME FROM HOSPITAL WHERE DEPARTMENT='SKIN';
+                    
+                </p>
+                <p>
+
+                    F)
+                    UPDATE HOSPITAL SET EXPERIENCE =5 WHERE DOCTORID='D003';
+                    
+                </p>
+                <p>
+
+                    G)
+                    DELETE FROM HOSPITAL WHERE DOCTORID='D005';
+                    
+                    
+                </p>
+                    
+                <h3>
+
+                    PROGRAMME 4
+                    ------------
+                </h3>
+                <p>
+
+                    
+                    CREATE TABLE BANK_CUSTOMER (
+                        ACC_NO INT PRIMARY KEY,
+                        CUST_NAME VARCHAR(10),
+                        PLACE VARCHAR(15)
+                        );
+                    </p>
+                    <p>
+
+                        
+                        CREATE TABLE DEPOSIT (
+                            ACC_NO INT REFERENCES BANK_CUSTOMER(ACC_NO) ,
+                            DEPOSIT_NO INT,
+                            D_AMOUNT INT
+                            );
+                        </p>
+                        <p>
+
+                            CREATE TABLE LOAN (
+                                ACC_NO INT REFERENCES BANK_CUSTOMER(ACC_NO) ,
+                                LOAN_NO INT,
+                                LAMOUNT INT
+                                );
+                            </p>
+                            <p>
+
+                                
+                                A)
+                                INSERT INTO BANK_CUSTOMER VALUES
+                                ('101','SANA' , 'MUKKOM' ),
+                                ('201','HANA' , 'THIRUVAMBADY' ),
+                                ('301','HENNA' , 'OMASSERY' ),
+                                ('401','ANAS' , 'CALICUT' ),
+                                ('501','ANU' , 'WAYAND' ),
+                                ('601','MANU' , 'KOCHI' );
+                            </p>
+                            <p>
+
+                                
+                                INSERT INTO DEPOSIT VALUES
+                                ('101',001 , 25000),
+                                ('301',003,75000),
+                                ('401' ,004,250000),
+                                ('501',705,2000);
+                                
+                            </p>
+                            <p>
+
+                                INSERT INTO LOAN VALUES
+                                ('201' ,702,10000),
+                                ('301' ,703,40000),
+                                ('501',705,25000);
+                            </p>
+                            <p>
+
+                                
+                                A)
+                                
+                                SELECT b.ACC_NO ,b.CUST_NAME ,b.PLACE ,D.DEPOSIT_NO ,d.D_AMOUNT ,l.LOAN_NO , l.LAMOUNT
+                                FROM BANK_CUSTOMER b FULL JOIN DEPOSIT d ON (b.ACC_NO=d.ACC_NO) FULL JOIN LOAN L on (b.ACC_NO=l.ACC_NO);
+                                
+                                
+                            </p>
+                            <p>
+
+                                b)
+                                
+                                
+                                SELECT b.ACC_NO, b.CUST_NAME ,d.D_AMOUNT from BANK_CUSTOMER as b join DEPOSIT as d on (b.ACC_NO=d.ACC_NO) and
+                                b.ACC_NO not in(SELECT ACC_NO from LOAN);
+                                
+                            </p>
+                            <p>
+
+                                c)
+                                SELECT BANK_CUSTOMER.cust_name ,LOAN.LAMOUNT from BANK_CUSTOMER,LOAN WHERE
+                                BANK_CUSTOMER.ACC_NO =LOAN.ACC_NO AND BANK_CUSTOMER.ACC_NO not in (SELECT ACC_NO from DEPOSIT);
+                                
+                            </p>
+                            <p>
+
+                                d)
+                        
+                                
+                                
+                                SELECT b.ACC_NO, b.CUST_NAME from BANK_CUSTOMER as b WHERE b.ACC_NO in (SELECT ACC_NO from LOAN) and b.ACC_NO in
+                                (SELECT ACC_NO from DEPOSIT);
+                            </p>
+                                <p>
+
+                                    e)
+                                    SELECT BANK_CUSTOMER.cust_name from BANK_CUSTOMER
+                                    WHERE BANK_CUSTOMER.ACC_NO not in (SELECT ACC_NO from LOAN) and BANK_CUSTOMER.ACC_NO not in
+                                    (SELECT ACC_NO from DEPOSIT);
+                                    
+                                </p>
+
+                                
+                                <h3>
+
+                                    PROGRAMME 5
+                                    ------------
+                                </h3>
+
+    <p>
+
+        CREATE TABLE EMPLOYEE (
+            EMPID INT,
+            ENAME VARCHAR(10),
+            SALARY INT,
+            DEPARTMENT VARCHAR(10),
+            AGE INT
+            );
+        </p>
+        <p>
+
+            
+            INSERT INTO EMPLOYEE VALUES
+            (101 , 'SANA' , 25000 , 'SALES' , 21),
+            (102 , 'HANA' , 35000 , 'SALES' , 28),
+            (103 , 'HENNA' ,45000 , 'PURCHASE' , 30),
+            (104 , 'ANAS' , 55000 , 'SALES' , 41),
+            (105 , 'ANU' , 60000 , 'PURCHASE' , 51);
+        </p>
+        <p>
+
+            
+            A)
+            SELECT COUNT(*) FROM EMPLOYEE;
+        </p>
+        <p>
+
+            
+            B)
+            
+            SELECT ENAME,AGE FROM EMPLOYEE WHERE AGE IN (SELECT MAX(AGE) FROM EMPLOYEE GROUP BY DEPARTMENT);
+            
+        </p>
+        <p>
+
+            C)
+            
+            SELECT DEPARTMENT,AVG(AGE) FROM EMPLOYEE GROUP BY DEPARTMENT;
+            
+        </p>
+        <p>
+
+            D)
+            
+            SELECT DEPARTMENT,AVG(SALARY) FROM EMPLOYEE GROUP BY DEPARTMENT;
+            
+        </p>
+        <p>
+
+            E)
+            
+            SELECT MIN(SALARY) FROM EMPLOYEE;
+            
+        </p>
+        <p>
+
+            F)
+            SELECT COUNT(*) FROM EMPLOYEE WHERE DEPARTMENT='PURCHASE';
+            
+        </p>
+        <p>
+
+            G)
+            
+            SELECT MAX(SALARY) FROM EMPLOYEE WHERE DEPARTMENT='SALES';
+            
+        </p>
+        <p>
+
+            H)
+            
+            SELECT MAX(SALARY) -MIN(SALARY) FROM EMPLOYEE;
+            
+            
+            
+        </p>
+        <h3>
+
+            PROGRAMME 6
+            ------------
+        </h3>
+    
+        <p>
+
+            CREATE TABLE PRODUCT (
+                PRODUCT_CODE VARCHAR(10) PRIMARY KEY,
+                PRODUCT_NAME VARCHAR(15),
+                CATEGORY VARCHAR(20),
+                QUANTITY INT,
+                PRICE INT
+                );
+                
+            </p>
+            <p>
+
+                INSERT INTO PRODUCT VALUES
+                ('D01' , 'DOVE' , 'BATH SOAP' , 200 , 60),
+                ('D02' , 'COLGATE' , 'PASTE' , 80 , 300),
+                ('D03' , 'LUX' , 'BATH SOAP' , 50 , 40),
+                ('D04' , 'SUN LIGHT' , 'WASHING POWDER' , 100 , 60),
+                ('D05' , 'CHANDRIKA' , 'BATH SOAP' , 300 , 10);
+                
+            </p>
+            <p>
+
+                A)
+                
+                SELECT * FROM PRODUCT ORDER BY PRODUCT_NAME DESC;
+            </p>
+            <p>
+
+                
+                B)
+                
+                SELECT PRODUCT_CODE,PRODUCT_NAME FROM PRODUCT WHERE PRICE BETWEEN 20 AND 50;
+                
+            </p>
+            <p>
+
+                C)
+                
+                SELECT * FROM PRODUCT WHERE CATEGORY IN ('BATH SOAP','PASTE','WASHING POWDER');
+                
+            </p>
+            <p>
+
+                D)
+                
+                SELECT * FROM PRODUCT WHERE (QUANTITY &gt;500 OR QUANTITY&lt;100);
+            </p>
+            <p>
+
+                E) SELECT * FROM PRODUCT WHERE PRODUCT_NAME LIKE 'S%' ;
+            </p>
+            <p>
+
+                F) SELECT * FROM PRODUCT WHERE CATEGORY &lt;&gt; 'PASTE';
+            </p>
+            <p>
+
+                
+                G)
+                SELECT * FROM PRODUCT WHERE PRODUCT_NAME LIKE '_U%' AND CATEGORY='WASHING POWDER';
+            </p>
+    
+            <h3>
+
+                
+                PROGRAMME 7
+                ------------
+            </h3>
+    
+            <p>
+
+                CREATE TABLE EMPLOYEES (
+                    EMPLOYEE_NAME VARCHAR(15) PRIMARY KEY ,
+                    CITY VARCHAR(10)
+                    );
+                </p>
+                <p>
+
+                    
+                    CREATE TABLE WORKS (
+                        EMPLOYEE_NAME VARCHAR(15) REFERENCES EMPLOYEES(EMPLOYEE_NAME),
+                        COMPANY_NAME VARCHAR(15),
+                        SALARY INT
+                        );
+                        
+                    </p>
+                    <p>
+
+                        CREATE TABLE COMPANY (
+                            COMPANY_NAME VARCHAR(15),
+                            CITY VARCHAR(15)
+                            );
+                        </p>
+
+    
+    <p>
+
+        CREATE TABLE MANAGES (
+            EMPLOYEE_NAME VARCHAR(15) REFERENCES EMPLOYEES(EMPLOYEE_NAME),
+            MANAGER_NAME VARCHAR(15)
+            );
+        </p>
+        <p>
+
+            
+            INSERT INTO EMPLOYEES VALUES
+            ('SANA' , 'CALICUT'),
+            ('HANA' , 'CALICUT'),
+            ('HENNA' , 'TRIVANDRAM'),
+            ('ANAS' , 'CALICUT'),
+            ('ANU' , 'KOCHI');
+            
+        </p>
+        <p>
+
+            INSERT INTO WORKS VALUES
+            ('SANA' , 'INFOSYS',25000),
+            ('HANA' , 'INFOSYS',35000),
+            ('HENNA' , 'WIPRO',20000),
+            ('ANAS' , 'TCS',10000),
+            ('ANU' , 'WIPRO' , 12000);
+            
+        </p>
+        <p>
+
+            INSERT INTO COMPANY VALUES
+            ('TCS','KOCHI'),
+            ('INFOSYS','CALICUT'),
+            ('WIPRO','TRIVANDRAM');
+            
+        </p>
+        <p>
+
+            INSERT INTO MANAGES VALUES
+            ('SANA' , 'MALIK'),
+            ('HANA' , 'MUHAMMED'),
+            ('HENNA' , 'BHASHEER'),
+            ('ANAS' , 'JOHN'),
+            ('ANU' , 'SNOW');
+            
+        </p>
+        <p>
+
+            A)
+            
+            SELECT EMPLOYEE_NAME FROM WORKS WHERE COMPANY_NAME='INFOSYS';
+            
+        </p>
+        <p>
+
+            B)
+            
+            SELECT E.EMPLOYEE_NAME, E.CITY FROM EMPLOYEES AS E JOIN WORKS W ON E.EMPLOYEE_NAME=W.EMPLOYEE_NAME WHERE
+            COMPANY_NAME='WIPRO';
+            
+        </p>
+        <p>
+
+            C)
+            SELECT E.EMPLOYEE_NAME,E.CITY FROM EMPLOYEES AS E JOIN WORKS W ON E.EMPLOYEE_NAME=W.EMPLOYEE_NAME
+            WHERE COMPANY_NAME='INFOSYS' AND W.SALARY&gt;10000;
+            
+        </p>
+        <p>
+
+            D)
+            
+            SELECT E.EMPLOYEE_NAME FROM EMPLOYEES AS E JOIN WORKS AS W ON E.EMPLOYEE_NAME=W.EMPLOYEE_NAME
+            JOIN COMPANY AS C ON W.COMPANY_NAME=C.COMPANY_NAME WHERE E.CITY=C.CITY;
+            
+        </p>
+        <p>
+
+            E)
+            SELECT EMPLOYEE_NAME FROM WORKS WHERE COMPANY_NAME &lt;&gt; 'WIPRO';
+            
+        </p>
+        <p>
+
+            F)
+            SELECT COMPANY_NAME ,COUNT(*) AS NUM FROM WORKS GROUP BY COMPANY_NAME having COUNT(EMPLOYEE_NAME) &gt;=
+            all(SELECT COUNT(EMPLOYEE_NAME) from WORKS GROUP by COMPANY_NAME);
+            
+            
+        </p>
+                <h3>
+
+                    
+                    PROGRAMME 8
+                    ------------
+                </h3>
+    
+                <p>
+
+                    CREATE TABLE AREAS (RADIUS INT PRIMARY KEY , AREA NUMERIC);
+                    CREATE OR REPLACE FUNCTION RAD()
+                    RETURNS VOID AS $$
+                </p>
+    
+                DECLARE
+                r int;
+                a NUMERIC;
+    
+                begin
+                for r in 3..7
+                loop
+                a:=3.14*r*r;
+                INSERT into AREAS VALUES(r,a);
+                end loop;
+                end $$
+    
+                language plpgsql;
+    
+    <h3>
+
+        PROGRAMME 9
+        ------------
+    </h3>
+    
+    <p>
+
+        CREATE TABLE electric_bill (
+            cust_no NUMERIC PRIMARY key,
+            cust_name VARCHAR(10) ,
+            units_consumed NUMERIC ,
+            bill_amount NUMERIC
+            );
+        </p>
+        <p>
+            
+            INSERT into electric_bill VALUES
+            (001 , 'JOHN' , 1000 , NULL),
+            (002 , 'bill' , 1200 , NULL),
+            (003 , 'frank' , 1600 , NULL),
+            (004 , 'lee' , 1500 , NULL),
+            (005 , 'jake' , 900 , NULL);
+        
+        </p>
+        <p>
+            
+            
+            
+            CREATE or REPLACE FUNCTION billcalc()
+            RETURNS VOID as $$
+            
+        </p>
+                DECLARE
+                BA NUMERIC;
+                cno int;
+                unit int;
+                <p>
+
+                    curl cursor for SELECT cust_no,units_consumed from electric_bill;
+                </p>
+    
+                begin
+                <p>
+                open curl;
+    
+
+                    loop
+                    fetch curl into cno,unit;
+                    exit when not found;
+                    BA=unit*3;
+                    UPDATE electric_bill set bill_amount=BA WHERE cno=cust_no;
+                    end loop;
+                    
+                    close curl;
+                </p>
+                end $$
+    
+                language plpgsql;
+    
+                SELECT * from billcalc();
+    
+    <h3>
+
+        PROGRAMME 10
+        ------------
+    </h3>
+    <p>
+
+        create or replace function fib(n int)
+        returns void as $$
+    </p>
+    <p>
+
+        declare
+        i int;
+        t1 int :=0;
+        t2 int :=1;
+        t3 int :=0;
+        
+    </p>
+    <p>
+
+        begin
+        raise notice '%' ,t1;
+        raise notice '%' ,t2;
+        
+        for i in 2..n loop
+        t3:=t1+t2;
+        t1:=t2;
+        t2:=t3;
+        
+        raise notice '%' ,t3;
+        
+        end loop;
+        end $$ language plpgsql;
+        select fib(10);
+    </p>
+        
+    <h3>
+
+        PROGRAMME 11
+        ------------
+    </h3>
+    <p>
+
+        create or replace function prime(n int)
+        returns void as $$
+    </p>
+    <p>
+
+        
+        declare
+        i int;
+        f int :=0;
+    </p>
+    <p>
+
+        
+        begin
+        if n=2 then
+        f:=0;
+        else
+        for i in 2..(n-1) loop
+        if(mod(n,i)=0) then
+        f:=1;
+        exit;
+        end if;
+        end loop;
+        end if;
+        if(f=0)
+        then
+        raise notice 'prime number';
+        Else
+        raise notice 'not prime number';
+        end if;
+        end $$
+        language plpgsql;
+        
+    </p>
+        select prime(5);
+        select prime(6);
+  <p></p>  
+
+  <h3>
+
+      PROGRAMME 12
+      ------------
+    </h3>
+    <p>
+
+        
+        create table emp_salary(empno int PRIMARY key, ename VARCHAR(20) , dept VARCHAR(20) , SALARY int);
+    </p>
+    <p>
+
+        
+        insert into emp_salary VALUES
+        (1001,'a','PURCHASE', 20000),
+        (1002,'B','SALES', 35000),
+        (1003,'C','PURCHASE', 13500),
+        (1004,'D','SALES', 14500),
+        (1005,'E','manufacture', 11000),
+        (1006,'F','manufacture', 15500);
+        
+    </p>
+    <p>
+
+        create or replace function avg_salary_dep(d VARCHAR(20))
+        returns numeric as $$
+    </p>
+    <p>
+
+        
+        declare
+        av numeric;
+        curl cursor for select avg(SALARY) from emp_salary WHERE dept=d;
+    </p>
+    <p>
+
+        begin
+        open curl;
+        fetch curl into av;
+        return av;
+        close curl;
+        return av;
+        end $$ language plpgsql;
+        
+    </p>
+    <p>
+
+        
+        SELECT avg_salary_dep('PURCHASE');
+        SELECT avg_salary_dep('SALES');
+    </p>
+
+
+    <h2>DATA STRUCTURE</h2>
+    <h3>reverse a string</h3>
+    #include <stdio.h>
+        #include <string.h>
+            #include <conio.h>
+                <p>
+
+                    void main()
+                    {
+                char *s;
+                int len, i;
+                // clrscr();
+                printf("\nENTER A STRING: ");
+                gets(s);
+                len = strlen(s);
+                printf("\nTHE REVERSE OF THE STRING IS:");
+                for (i = len; i &gt;= 0; i--)
+                printf("%c", *(s + i));
+                // getch();
+            }
+        </p>
+        <h3>pattern matching</h3>
+        <p>
+            </p><p>
+
+                #include <stdio.h>
+                    #include <string.h>
+                        int match(char[], char[]);
+                    </string.h></stdio.h></p>
+            <p>
+
+                int main()
+                {
+                    char a[100], b[100];
+                    int position;
+            
+                    printf("Enter some text\n");
+                    gets(a);
+                    
+                    printf("Enter a string to find\n");
+                    gets(b);
+                    
+                    position = match(a, b);
+                    
+                    if (position != -1)
+                    {
+                    printf("Found at location: %d\n", position + 1);
+                }
+                else
+                {
+                    printf("Not found.\n");
+                }
+                
+                return 0;
+            }
+            
+        </p>
+                    int match(char text[], char pattern[])
+                    {
+                    int c, d, e, text_length, pattern_length, position = -1;
+            
+                    text_length = strlen(text);
+                    pattern_length = strlen(pattern);
+            
+                    if (pattern_length &gt; text_length)
+                    {
+                    return -1;
+                    }
+            
+                    for (c = 0; c &lt;= text_length - pattern_length; c++)
+                    <br>
+                     { position=e=c; 
+                        for (d=0; d &lt; pattern_length; d++) 
+                        { if (pattern[d]==text[e]) 
+                            { e++; } 
+                            else 
+                            { break; }
+                         } 
+                         if (d==pattern_length)
+                          { return position; }
+                         } return -1; }
+
+        <p></p>
+        <h3>2d array searching </h3>
+        <p>
+            #include <stdio.h>
+                int main()
+                {
+                int m, n, item, count = 0, array[10][10];
+                printf("Enter the number of rows and columns: ");
+                scanf("%d %d", &amp;m, &amp;n);
+                printf("Enter %d elements: ", (m * n));
+                for (int i = 0; i &lt; m; i++) { for (int j=0; j &lt; n; j++) { scanf("%d", &amp;array[i][j]); } } printf("Enter the item to
+                    find: ");
+                scanf(" %d", &amp;item); for (int i=0; i &lt; m; i++) { for (int j=0; j &lt; n; j++) { if (array[i][j]==item) { printf("Item
+                    found at [%d, %d] \n", i, j); count++; } } } if (count==0) printf("Item Not found"); return 0; }
+        </stdio.h></p>
+        <h3>append 2 array</h3>
+        <p>
+            #include <stdio.h>
+                #include <conio.h>
+                    int main()
+                    {
+                    int arr1[50], arr2[50], m, n, i, j, k, c[100];
+                    printf("Enter Array 1 Size: ");
+                    scanf("%d", &amp;m);
+                    printf("Enter Array 1 Elements: ");
+                    for (i = 0; i &lt; m; i++) { scanf("%d", &amp;arr1[i]); } printf("\nEnter Array 2 Size: ");
+                scanf(" %d", &amp;n); printf("Enter Array 2 Elements: ");
+                for (i = 0; i &lt; n; i++)
+                {
+                    scanf(" %d", &amp;arr2[i]); } for (i=0; i &lt; m; i++) { c[i]=arr1[i]; } for (j=0; j &lt; n; ++j, ++i) { c[i]=arr2[j]; }
+                        printf("append array is \n"); for (i=0; i &lt; m + n; ++i) { printf("%d", c[i]); } getch(); }
+        </conio.h></stdio.h></p>
+        <h3>binary search</h3>
+        <p>
+            #include <stdio.h>
+                int main()
+                {
+                int c, first, last, middle, n, search, array[100];
+            
+                printf("Enter number of elements\n");
+                scanf("%d", &amp;n);
+            
+                printf("Enter %d integers\n", n);
+            
+                for (c = 0; c &lt; n; c++) scanf("%d", &amp;array[c]); printf("Enter value to find\n"); scanf("%d", &amp;search); first=0;
+                    last=n - 1; middle=(first + last) / 2; while (first &lt;=last) { if (array[middle] &lt; search) first=middle + 1; else
+                    if (array[middle]==search) { printf("%d found at location %d.\n", search, middle + 1); break; } else last=middle
+                    - 1; middle=(first + last) / 2; } if (first&gt; last)
+                    printf("Not found! %d isn't present in the list.\n", search);
+            
+                    return 0;
+                    }
+        </stdio.h></p>
+        <h3>sparse matrix</h3>
+        <p>
+            #include <stdio.h>
+                void main()
+                {
+                int a[6][6], s[3][25], i, j, m, n, p = 0;
+                printf("enter the order of matrix :");
+                scanf("%d%d", &amp;m, &amp;n);
+                printf("enter %d elements :", m * n);
+                for (i = 0; i &lt; m; ++i) { for (j=0; j &lt; n; ++j) { scanf("%d", &amp;a[i][j]); } } for (i=0; i &lt; m; ++i) { for (j=0; j &lt;
+                    n; ++j) { if (a[i][j] !=0) { s[0][p]=i; s[1][p]=j; s[2][p]=a[i][j]; ++p; } } } printf("given matrix is: \n");
+                    for (i=0; i &lt; m; ++i) { for (j=0; j &lt; n; ++j) { printf("%d", a[i][j]); } printf("\n"); } printf("triplet form :
+                    \n"); for (i=0; i &lt; 3; ++i) { for (j=0; j &lt; n; ++j) { printf("%d", s[i][j]); } printf("\n"); } }
+        </stdio.h></p>
+        <h3>singly ll</h3>
+        <p>
+            #include <stdio.h>
+                #include <stdlib.h>
+            
+                    void main()
+                    {
+                    struct node
+                    {
+                    int data;
+                    struct node *next;
+                    } *head = NULL, *newnode, *temp;
+            
+                    int i, m;
+                    printf("enter the number of nodes : ");
+                    scanf("%d", &amp;m);
+                    printf("enter %d elements :", m);
+                    for (i = 0; i &lt; m; ++i) { newnode=(struct node *)malloc(sizeof(struct node)); scanf("%d", &amp;newnode-&gt;data);
+                        newnode-&gt;next = NULL;
+                        if (head == NULL)
+                        {
+                        head = temp = newnode;
+                        }
+                        else
+                        {
+                        temp-&gt;next = newnode;
+                        temp = newnode;
+                        }
+                        }
+                        printf("elements : ");
+                        temp = head;
+                        while (temp != NULL)
+                        {
+                        printf("%d", temp-&gt;data);
+                        temp = temp-&gt;next;
+                        /* code */
+                        }
+        </stdlib.h></stdio.h></p>
+        <h3>delete singly ll</h3>
+        <p>
+        #include <stdio.h>
+            #include <stdlib.h>
+                void main()
+                {
+                struct node
+                {
+                int data;
+                struct node *next;
+                } *head = NULL, *newnode, *temp, *nextnode;
+        
+                int i, j = 1, m, pos, start = 1;
+                printf("enter the number of nodes : ");
+                scanf("%d", &amp;m);
+                printf("enter %d elements :", m);
+                for (i = 0; i &lt; m; ++i) { newnode=(struct node *)malloc(sizeof(struct node)); scanf("%d", &amp;newnode-&gt;data);
+                    newnode-&gt;next = NULL;
+                    if (head == NULL)
+                    {
+                    head = temp = newnode;
+                    }
+                    else
+                    {
+                    temp-&gt;next = newnode;
+                    temp = newnode;
+                    }
+                    }
+        
+                    printf("\n elements before : ");
+                    temp = head;
+                    while (temp != NULL)
+                    {
+                    printf("%d", temp-&gt;data);
+                    temp = temp-&gt;next;
+                    }
+        
+                    printf("\n enter the position of node to delete :");
+                    scanf("%d", &amp;pos);
+                    if (pos == 1)
+                    {
+                    temp = head;
+                    head = temp-&gt;next;
+                    free(temp);
+                    }
+                    else
+                    {
+                    temp = head;
+                    while (j &lt; pos - 1) { temp=temp-&gt;next;
+                        j++;
+                        }
+                        nextnode = temp-&gt;next;
+                        temp-&gt;next = nextnode-&gt;next;
+                        free(nextnode);
+                        }
+        
+                        printf("\n elements after : ");
+                        temp = head;
+                        while (temp != NULL)
+                        {
+                        printf("%d", temp-&gt;data);
+                        temp = temp-&gt;next;
+                        }
+                        }
+
+        </stdlib.h></stdio.h></p>
+        
+        <h3>doubly linked list </h3>
+        <p>
+            #include <stdio.h>
+                #include <stdlib.h>
+            
+                    void main()
+                    {
+                    struct node
+                    {
+                    int data;
+                    struct node *next;
+                    struct node *prev;
+                    } *head = NULL, *newnode, *temp;
+            
+                    int i, m;
+                    printf("enter the number of nodes : ");
+                    scanf("%d", &amp;m);
+                    printf("enter %d elements :", m);
+                    for (i = 0; i &lt; m; ++i) { newnode=(struct node *)malloc(sizeof(struct node)); scanf("%d", &amp;newnode-&gt;data);
+                        newnode-&gt;next = NULL;
+                        newnode-&gt;prev = NULL;
+                        if (head == NULL)
+                        {
+                        head = temp = newnode;
+                        }
+                        else
+                        {
+                        temp-&gt;next = newnode;
+                        newnode-&gt;prev = temp;
+                        temp = newnode;
+                        }
+                        }
+                        printf("elements : ");
+                        temp = head;
+                        while (temp != NULL)
+                        {
+                        printf("%d", temp-&gt;data);
+                        temp = temp-&gt;next;
+                        /* code */
+                        }
+                        }
+        </stdlib.h></stdio.h></p>
+        <h3>stack using array</h3>
+        <p>
+            #include <stdio.h>
+                #define MAX 10
+                void main()
+                {
+                int a, top = -1, stack[MAX];
+                printf("enter the elements : ");
+                do
+                {
+                if (top == MAX - 1)
+                {
+                printf(" \n stack is full ! \n");
+                break;
+                }
+                else
+                {
+                scanf("%d", &amp;stack[++top]);
+                printf("do you wany to continue : zero to stop :");
+                scanf("%d", &amp;a);
+                }
+                } while (a);
+                printf("Elements are :");
+                while (top &gt; -1)
+                {
+                printf("%d", stack[top--]);
+                }
+                }
+
+        </stdio.h></p>
+        <h3>
+            stack using ll
+        </h3>
+        <p>
+            #include <stdio.h>
+                #include <stdlib.h>
+                    #include <conio.h>
+                        void main()
+                        {
+                        int a;
+                        struct node
+                        {
+                        int data;
+                        struct node *next;
+                        } *top = NULL, *newnode;
+                        printf("enter elements :");
+                        do
+                        {
+                        newnode = (struct node *)malloc(sizeof(struct node));
+                        scanf("%d", &amp;newnode-&gt;data);
+                        newnode-&gt;next = top;
+                        top = newnode;
+                        printf("do you wany to continue : zero to stop :");
+                        scanf("%d", &amp;a);
+                        } while (a);
+            
+                        printf("elements are :");
+                        while (top != NULL)
+                        {
+                        printf("%d", top-&gt;data);
+                        top = top-&gt;next;
+                        }
+                        }
+        </conio.h></stdlib.h></stdio.h></p>
+        <h3>queue using array</h3>
+        <p>
+            #include <stdio.h>
+                #define MAX 10
+                void main()
+                {
+                int a, front = -1, rear = -1, queue[MAX];
+                printf("enter elements :");
+                do
+                {
+                if (rear == MAX - 1)
+                {
+                printf("queue is full ! \n");
+                break;
+                }
+                else
+                {
+                scanf("%d", &amp;queue[++rear]);
+                printf("do you wany to continue : zero to stop :");
+                scanf("%d", &amp;a);
+                }
+                } while (a);
+                printf("Elements are :");
+                for (front = 0; front &lt; = rear; ++front) { printf("%d", queue[front]); } }
+        </stdio.h></p>
+        <h3>queue using ll
+
+        </h3>
+        #include <stdio.h>
+            #include <stdlib.h>
+                #include <conio.h>
+                    void main()
+                    {
+                    int c, a;
+                    struct node
+                    {
+                    int data;
+                    struct node *next;
+                    } *front = NULL, *newnode, *rear = NULL;
+                    printf("enter elements :");
+                    do
+                    {
+                    newnode = (struct node *)malloc(sizeof(struct node));
+                    scanf("%d", &amp;newnode-&gt;data);
+                    newnode-&gt;next = NULL;
+                    if (rear == NULL)
+                    {
+                    rear = front = newnode;
+                    }
+                    else
+                    {
+                    rear-&gt;next = newnode;
+                    rear = newnode;
+                    }
+                    printf("do you wany to continue : zero to stop :");
+                    scanf("%d", &amp;a);
+                    } while (a);
+        
+                    printf("elements are :");
+        
+                    while (front != NULL)
+                    {
+                    printf("%d", front-&gt;data);
+                    front = front-&gt;next;
+                    }
+                    }
+        
+        <h3>selection sort</h3>
+        <p>
+            #include <stdio.h>
+                #include <conio.h>
+                    void main()
+                    {
+                    int a[10], i, j, n, min, temp;
+                    printf("enter the number of elements : ");
+                    scanf("%d", &amp;n);
+                    printf("enter the elements: ");
+                    for (i = 0; i &lt; n; ++i) { scanf("%d", &amp;a[i]); } printf("array is"); for (i=0; i &lt; n - 1; ++i) { min=i; for (j=i
+                        + 1; j &lt; n; ++j) { if (a[j] &lt; a[min]) { min=j; } } temp=a[i]; a[i]=a[min]; a[min]=temp; } printf(" \nsorted
+                        array :"); for (i=0; i &lt; n; ++i) { printf("%d", a[i]); } }
+        </conio.h></stdio.h></p>
+        <h3>exhange sort</h3>
+        <p>
+            #include <stdio.h>
+                #include <conio.h>
+                    void main()
+                    {
+                    int a[10], i, j, n, temp;
+                    printf("enter the number of elements : ");
+                    scanf("%d", &amp;n);
+                    printf("enter the elements: ");
+                    for (i = 0; i &lt; n; ++i) { scanf("%d", &amp;a[i]); } printf("array is"); for (i=0; i &lt; n - 1; ++i) { for (j=0; j &lt; n
+                        - i - 1; j++) { if (a[j]&gt; a[j + 1])
+                        {
+                        temp = a[j];
+                        a[j] = a[j + 1];
+                        a[j + 1] = temp;
+                        }
+                        }
+                        }
+                        printf(" \nsorted array :");
+                        for (i = 0; i &lt; n; ++i) { printf("%d", a[i]); } }
+        </conio.h></stdio.h></p>
+        <h3>insertion sort</h3>
+        <p>
+            #include <stdio.h>
+                #include <conio.h>
+                    void main()
+                    {
+                    int a[10], i, j, n, temp;
+                    printf("enter the number of elements : ");
+                    scanf("%d", &amp;n);
+                    printf("enter the elements: ");
+                    for (i = 0; i &lt; n; ++i) { scanf("%d", &amp;a[i]); } printf("array is"); for (i=0; i &lt; n; ++i) { printf("%d", a[i]);
+                        } for (i=1; i &lt; n; ++i) { temp=a[i]; j=i - 1; while (j&gt;= 0 &amp;&amp; a[j] &gt; temp)
+                        {
+                        a[j + 1] = a[j];
+                        j = j - 1;
+                        }
+                        a[j + 1] = temp;
+                        }
+                        printf(" \nsorted array :");
+                        for (i = 0; i &lt; n; ++i) { printf("%d", a[i]); } }
+        </conio.h></stdio.h></p>
+        <h3>postfix</h3>
+        <p>
+            </p><p>
+
+                #include <stdio.h>
+                    #include <ctype.h>
+                        #include <stdlib.h>
+                            
+                            #define SIZE 40
+                        </stdlib.h></ctype.h></stdio.h></p>
+                        <p>
+
+                            void main()
+                            {
+                                int i, a, b, result, stack[SIZE], top = -1, pEval;
+                                char ch[SIZE];
+                                printf("\nEnter a postfix expression: ");
+                                scanf("%s", ch);
+                            </p>
+            for (i = 0; ch[i] != '\0'; i++)
+            {
+
+            if (isdigit(ch[i]))
+            {
+            stack[++top] = ch[i] - '0';
+            }
+            else if (ch[i] == '+' || ch[i] == '-' || ch[i] == '*' || ch[i] == '/')
+            {
+            b = stack[top--];
+            a = stack[top--];
+<p>
+
+    switch (ch[i])
+    {
+        case '+':
+        result = a + b;
+        break;
+        case '-':
+            result = a - b;
+            break;
+            case '*':
+            result = a * b;
+            break;
+            case '/':
+            result = a / b;
+            break;
+        }
+        stack[++top] = result;
+    }
+}
+pEval = stack[top--];
+
+printf("\nThe postfix evaluation is: %d\n", pEval);
+}
+
+</p>
+
+<p></p>
+        <h3>bst</h3>
+        <p>
+            #include <stdio.h>
+                #include <stdlib.h>
+            
+                    struct node
+                    {
+                    int key;
+                    struct node *left, *right;
+                    };
+            
+                    struct node *newNode(int item)
+                    {
+                    struct node *temp = (struct node *)malloc(sizeof(struct node));
+                    temp-&gt;key = item;
+                    temp-&gt;left = temp-&gt;right = NULL;
+                    return temp;
+                    }
+            
+                    void inorder(struct node *root)
+                    {
+                    if (root != NULL)
+                    {
+                    inorder(root-&gt;left);
+                    printf("%d \n", root-&gt;key);
+                    inorder(root-&gt;right);
+                    }
+                    }
+            
+                    struct node *insert(struct node *node, int key)
+                    {
+                    if (node == NULL)
+                    return newNode(key);
+            
+                    if (key &lt; node-&gt;key)
+                        node-&gt;left = insert(node-&gt;left, key);
+                        else if (key &gt; node-&gt;key)
+                        node-&gt;right = insert(node-&gt;right, key);
+            
+                        return node;
+                        }
+            
+                        int main()
+                        {
+            
+                        struct node *root = NULL;
+                        root = insert(root, 50);
+                        insert(root, 30);
+                        insert(root, 20);
+                        insert(root, 40);
+                        insert(root, 70);
+                        insert(root, 60);
+                        insert(root, 80);
+                        inorder(root);
+            
+                        return 0;
+                        }
+
+        </stdlib.h></stdio.h></p>
+</conio.h></stdlib.h></stdio.h></conio.h></string.h></stdio.h></body></html>
